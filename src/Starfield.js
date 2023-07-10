@@ -9,38 +9,28 @@ class Starfield {
 
     this.layers = [];
 
-    this.starsCount = 150;
     this.layersCount = 4;
+    this.starsCount = 150;
+    this.directions = { y: 1, x: 0 };
+    this.speed = 1;
+    this.starSize = 1.5;
 
     this.colors = ["#ff0000", "#00ff00", "#0000ff", "#ffffff"];
   }
   init() {
-    const INITIAL_STAR_SIZE = 1.5;
-    const INITIAL_SPEED = 1;
     let divisor = 1;
-
     for (let i = 0; i < this.layersCount; i++) {
-      const layer = new Layer({ yBoundary: this.canvas.height });
-
       const avgStarPerLayer = Math.floor(this.starsCount / this.layersCount);
       const remainder = this.starsCount % this.layersCount;
       const starPerLayer =
         avgStarPerLayer + (i === this.layersCount - 1 ? remainder : 0);
 
-      for (let j = 0; j < starPerLayer; j++) {
-        layer.addStar(
-          new Star({
-            ctx: this.ctx,
-            x: random(0, this.canvas.width),
-            y: random(0, this.canvas.height),
-            radius: INITIAL_STAR_SIZE / divisor,
-            speed: INITIAL_SPEED / divisor,
-            // color: this.colors[i],
-          })
-        );
-      }
+      const layer = new Layer({
+        divisor,
+        instance: this,
+        starCount: starPerLayer,
+      });
 
-      console.log(divisor, i);
       divisor *= 1.5;
       this.layers.push(layer);
     }
