@@ -19,19 +19,24 @@ class Layer {
         ctx,
         x: random(0, canvas.width),
         y: random(0, canvas.height),
-        radius: starSize / this.divisor,
-        speed: { y: speed / this.divisor, x: 0 },
+        radius: starSize,
+        speed: { y: speed.y, x: speed.x },
+        divisor: this.divisor,
       });
 
       this.stars.push(star);
     }
   }
   draw() {
-    const { width, height } = this.instance.canvas;
+    const {
+      canvas: { width, height },
+      speed,
+    } = this.instance;
 
     for (const star of this.stars) {
       star.y = (star.y + height) % height;
       star.x = (star.x + width) % width;
+      star.speed = speed;
 
       star.draw();
     }

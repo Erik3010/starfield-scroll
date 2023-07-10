@@ -1,6 +1,4 @@
-import { random } from "./utility";
 import Layer from "./Layer";
-import Star from "./Star";
 
 class Starfield {
   constructor({ canvas }) {
@@ -11,8 +9,7 @@ class Starfield {
 
     this.layersCount = 4;
     this.starsCount = 150;
-    this.directions = { y: 1, x: 0 };
-    this.speed = 1;
+    this.speed = { y: 1, x: 0 };
     this.starSize = 1.5;
 
     this.colors = ["#ff0000", "#00ff00", "#0000ff", "#ffffff"];
