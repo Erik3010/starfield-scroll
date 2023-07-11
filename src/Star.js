@@ -5,11 +5,8 @@ class Star {
     this.y = y;
 
     this.speed = speed;
-
     this.color = color;
-
     this.radius = radius;
-
     this.divisor = divisor;
   }
   get scaledRadius() {
