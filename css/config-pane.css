@@ -1,0 +1,47 @@
+.config-pane-container {
+  background: #28292e;
+  width: 256px;
+  border-radius: 0.35rem;
+  position: fixed;
+  right: 0.5rem;
+  top: 0.5rem;
+  overflow: hidden;
+}
+
+.config-pane-header {
+  background: #3e3f44;
+  padding: 0.35rem 0.25rem;
+  color: #fff;
+  font-size: 0.7rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.config-pane-body {
+  padding: 0.5rem;
+}
+
+.config-pane-body > .config-pane-form-control + .config-pane-form-control {
+  margin-top: 0.5rem;
+}
+
+.config-pane-form-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.config-pane-form-control label {
+  color: #fff;
+  font-size: 0.75rem;
+}
+
+.config-pane-form-control input {
+  background: #3e3f44;
+  border-radius: 0.125rem;
+  border: none;
+  color: #fff;
+  padding: 0.125rem 0.25rem;
+  text-align: right;
+  font-size: 0.75rem;
+}

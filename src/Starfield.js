@@ -1,3 +1,4 @@
+import ConfigPane from "./ConfigPane";
 import Layer from "./Layer";
 
 class Starfield {
@@ -7,20 +8,25 @@ class Starfield {
 
     this.layers = [];
 
-    this.layersCount = 4;
-    this.starsCount = 150;
-    this.speed = { y: 1, x: 0 };
-    this.starSize = 1.5;
+    this.config = {
+      layersCount: 4,
+      starsCount: 150,
+      speed: { y: 1, x: 0 },
+      starSize: 1.5,
+      colors: { background: "#000000", star: "#ffffff" },
+    };
 
-    this.colors = ["#ff0000", "#00ff00", "#0000ff", "#ffffff"];
+    this.configPane = new ConfigPane(this.config);
   }
   init() {
+    const { layersCount, starsCount } = this.config;
+
     let divisor = 1;
-    for (let i = 0; i < this.layersCount; i++) {
-      const avgStarPerLayer = Math.floor(this.starsCount / this.layersCount);
-      const remainder = this.starsCount % this.layersCount;
+    for (let i = 0; i < layersCount; i++) {
+      const avgStarPerLayer = Math.floor(starsCount / layersCount);
+      const remainder = starsCount % layersCount;
       const starPerLayer =
-        avgStarPerLayer + (i === this.layersCount - 1 ? remainder : 0);
+        avgStarPerLayer + (i === layersCount - 1 ? remainder : 0);
 
       const layer = new Layer({
         divisor,
@@ -35,7 +41,7 @@ class Starfield {
     this.render();
   }
   drawBg() {
-    this.ctx.fillStyle = "#000000";
+    this.ctx.fillStyle = this.config.colors.background;
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
   draw() {

@@ -12,7 +12,11 @@ class Layer {
     this.generateStars();
   }
   generateStars() {
-    const { ctx, canvas, starSize, speed } = this.instance;
+    const {
+      ctx,
+      canvas,
+      config: { starSize, speed, colors },
+    } = this.instance;
 
     for (let i = 0; i < this.starCount; i++) {
       const star = new Star({
@@ -22,6 +26,7 @@ class Layer {
         radius: starSize,
         speed: { y: speed.y, x: speed.x },
         divisor: this.divisor,
+        color: colors.star,
       });
 
       this.stars.push(star);
@@ -30,7 +35,7 @@ class Layer {
   draw() {
     const {
       canvas: { width, height },
-      speed,
+      config: { speed },
     } = this.instance;
 
     for (const star of this.stars) {
