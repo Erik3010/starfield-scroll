@@ -35,13 +35,15 @@ class Layer {
   draw() {
     const {
       canvas: { width, height },
-      config: { speed },
+      config: { speed, colors, starSize },
     } = this.instance;
 
     for (const star of this.stars) {
       star.y = (star.y + height) % height;
       star.x = (star.x + width) % width;
       star.speed = speed;
+      star.color = colors.star;
+      star.radius = starSize;
 
       star.draw();
     }

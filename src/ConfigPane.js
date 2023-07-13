@@ -22,22 +22,31 @@ class ConfigPane {
         continue;
       }
 
-      this.addInput(`${parent ? `${parent} ` : ""}${key}`, value);
+      this.addInput({
+        value,
+        key,
+        params: this.params[parent] ?? this.params,
+        label: `${parent ? `${parent} ` : ""}${key}`,
+        type: parent === "colors" ? "color" : "number",
+      });
     }
   }
-  addInput(key, value) {
+  addInput({ label, value, type, params, key }) {
     const formControl = createElement("div", {
       class: ["config-pane-form-control"],
     });
 
-    const input = createElement("input", {
-      type: "text",
-    });
-    const label = createElement("label");
-    label.textContent = key;
+    const input = createElement("input", { type });
+    const formLabel = createElement("label");
+    formLabel.textContent = label;
     input.value = value;
 
-    formControl.appendChild(label);
+    input.addEventListener("input", (event) => {
+      let value = event.target.value;
+      params[key] = value;
+    });
+
+    formControl.appendChild(formLabel);
     formControl.appendChild(input);
     this.element.content.appendChild(formControl);
   }
