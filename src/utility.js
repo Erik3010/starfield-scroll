@@ -6,7 +6,6 @@ export const isObject = (value) =>
 
 export const createElement = (tagName, props) => {
   const tag = document.createElement(tagName);
-
   for (const key in props) {
     if (key === "class") {
       tag.classList.add(...props[key]);
