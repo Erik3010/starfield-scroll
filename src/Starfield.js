@@ -48,7 +48,6 @@ class Starfield {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.drawBg();
-
     for (const layer of this.layers) {
       layer.draw();
     }
