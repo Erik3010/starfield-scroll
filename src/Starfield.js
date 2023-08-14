@@ -54,6 +54,7 @@ class Starfield {
   }
   render() {
     this.draw();
+
     requestAnimationFrame(this.render.bind(this));
   }
 }
